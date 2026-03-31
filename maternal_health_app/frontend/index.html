@@ -1,0 +1,198 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Guardian Care | Role Selection</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-container": "#a45d4f",
+                        "secondary-fixed-dim": "#90cdfd",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary": "#1c648e",
+                        "on-surface-variant": "#3f4945",
+                        "inverse-primary": "#88d5c0",
+                        "on-secondary-fixed-variant": "#004b70",
+                        "on-primary-container": "#d4fff1",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed-dim": "#ffb4a5",
+                        "surface-tint": "#146a59",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "secondary-container": "#90cdfd",
+                        "secondary-fixed": "#cae6ff",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary": "#874539",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "primary": "#076453",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fff3f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#723529",
+                        "on-secondary-fixed": "#001e30",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed-variant": "#005142",
+                        "surface-container-low": "#f3f3f3",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdad3",
+                        "on-primary-fixed": "#002019",
+                        "on-secondary-container": "#025881",
+                        "background": "#f9f9f9",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#88d5c0",
+                        "outline": "#6f7975",
+                        "outline-variant": "#bec9c4",
+                        "on-tertiary-fixed": "#3a0b04",
+                        "primary-fixed": "#a4f2db",
+                        "primary-container": "#2e7d6b"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -12px rgba(30, 41, 59, 0.06);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation (Shell Suppressed per Task Requirements for focused landing) -->
+<header class="w-full flex justify-between items-center px-8 py-10 max-w-7xl mx-auto">
+<div class="text-3xl font-headline font-bold text-primary tracking-tight" style="">Guardian Care</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-semibold text-outline tracking-wide uppercase" style="">Language: English</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" style="">language</button>
+</div>
+</header>
+<main class="min-h-[819px] flex flex-col items-center justify-center px-6 pb-20">
+<!-- Hero Section -->
+<div class="max-w-3xl text-center mb-16 space-y-6">
+<h1 class="text-5xl md:text-6xl font-headline text-on-surface leading-tight" style="">
+                Welcome to your <span class="italic text-primary" style="">healing circle</span>
+</h1>
+<p class="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl mx-auto" style="">
+                Select your pathway to begin. Guardian Care bridges clinical excellence with community warmth for every stage of motherhood.
+            </p>
+</div>
+<!-- Role Selection Bento-ish Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
+<!-- Patient Card -->
+<button class="group relative flex flex-col text-left transition-all duration-300 hover:-translate-y-2 focus:outline-none" style="">
+<div class="bg-surface-container-lowest editorial-shadow rounded-3xl p-8 h-full flex flex-col border border-outline-variant/10 group-hover:border-primary/20">
+<div class="mb-8 overflow-hidden rounded-2xl aspect-[4/3] bg-primary-container/10">
+<img alt="Patient Role" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="portrait of a serene pregnant woman in a vibrant traditional sari standing in a sun-drenched rural garden with soft natural lighting" src="https://imgs.search.brave.com/jrBecNA07mt0Hapy8a866334lO5zfTFM6L29u-y5V4w/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTEv/MzMyLzQ1Ni9zbWFs/bC9taW5pbWFsaXN0/aWMtZmxhdC1kZXNp/Z24tYXZhdGFyLWlj/b24td2l0aC1zaGFk/b3ctcGVyZmVjdC1m/b3ItcHJvZmlsZS1w/aWN0dXJlcy1zb2Np/YWwtbWVkaWEtdXNl/ci1pbnRlcmZhY2Vz/LWFuZC1wcm9mZXNz/aW9uYWwtd2Vic2l0/ZXMtcG5nLnBuZw" style="">
+</div>
+<div class="mt-auto">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">pregnant_woman</span>
+<span class="text-xs font-bold tracking-[0.2em] uppercase text-primary/70" style="">Journey of Care</span>
+</div>
+<h2 class="text-2xl font-headline font-bold text-on-surface mb-3" style="">Patient</h2>
+<p class="text-on-surface-variant font-medium leading-relaxed" style="">Access your personalized health dashboard and connect with your dedicated village care circle.</p>
+<div class="mt-8 flex items-center gap-2 text-primary font-bold transition-all group-hover:gap-4">
+<span class="" style="">Get Started</span>
+<span class="material-symbols-outlined" style="">arrow_forward</span>
+</div>
+</div>
+</div>
+</button>
+<!-- ASHA Worker Card -->
+<button class="group relative flex flex-col text-left transition-all duration-300 hover:-translate-y-2 focus:outline-none" style="">
+<div class="bg-primary editorial-shadow rounded-3xl p-8 h-full flex flex-col text-on-primary">
+<div class="mb-8 overflow-hidden rounded-2xl aspect-[4/3] bg-white/10">
+<img alt="ASHA Worker Role" class="w-full h-full object-cover mix-blend-overlay transition-transform duration-500 group-hover:scale-110" data-alt="a compassionate healthcare coordinator in India holding a digital tablet and talking to people in a warm community setting" src="https://imgs.search.brave.com/jrBecNA07mt0Hapy8a866334lO5zfTFM6L29u-y5V4w/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTEv/MzMyLzQ1Ni9zbWFs/bC9taW5pbWFsaXN0/aWMtZmxhdC1kZXNp/Z24tYXZhdGFyLWlj/b24td2l0aC1zaGFk/b3ctcGVyZmVjdC1m/b3ItcHJvZmlsZS1w/aWN0dXJlcy1zb2Np/YWwtbWVkaWEtdXNl/ci1pbnRlcmZhY2Vz/LWFuZC1wcm9mZXNz/aW9uYWwtd2Vic2l0/ZXMtcG5nLnBuZw" style="">
+</div>
+<div class="mt-auto">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed" style="">volunteer_activism</span>
+<span class="text-xs font-bold tracking-[0.2em] uppercase text-primary-fixed/80" style="">Support Hub</span>
+</div>
+<h2 class="text-2xl font-headline font-bold text-white mb-3" style="">ASHA Worker</h2>
+<p class="text-on-primary-container/80 font-medium leading-relaxed" style="">Coordinate village health alerts and manage patient insights with AI-assisted care tracking.</p>
+<div class="mt-8 flex items-center gap-2 text-primary-fixed font-bold transition-all group-hover:gap-4">
+<span class="" style="">Sign In</span>
+<span class="material-symbols-outlined" style="">arrow_forward</span>
+</div>
+</div>
+</div>
+</button>
+<!-- Doctor Card -->
+<button class="group relative flex flex-col text-left transition-all duration-300 hover:-translate-y-2 focus:outline-none" style="">
+<div class="bg-surface-container-lowest editorial-shadow rounded-3xl p-8 h-full flex flex-col border border-outline-variant/10 group-hover:border-secondary/20">
+<div class="mb-8 overflow-hidden rounded-2xl aspect-[4/3] bg-secondary-container/10">
+<img alt="Doctor Role" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="modern medical professional in a clean clinical environment looking thoughtfully at data on a screen with soft teal accents" src="https://imgs.search.brave.com/jrBecNA07mt0Hapy8a866334lO5zfTFM6L29u-y5V4w/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTEv/MzMyLzQ1Ni9zbWFs/bC9taW5pbWFsaXN0/aWMtZmxhdC1kZXNp/Z24tYXZhdGFyLWlj/b24td2l0aC1zaGFk/b3ctcGVyZmVjdC1m/b3ItcHJvZmlsZS1w/aWN0dXJlcy1zb2Np/YWwtbWVkaWEtdXNl/ci1pbnRlcmZhY2Vz/LWFuZC1wcm9mZXNz/aW9uYWwtd2Vic2l0/ZXMtcG5nLnBuZw" style="">
+</div>
+<div class="mt-auto">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: &quot;FILL&quot; 1;">stethoscope</span>
+<span class="text-xs font-bold tracking-[0.2em] uppercase text-secondary/70" style="">Clinical Portal</span>
+</div>
+<h2 class="text-2xl font-headline font-bold text-on-surface mb-3" style="">Doctor</h2>
+<p class="text-on-surface-variant font-medium leading-relaxed" style="">Monitor high-risk cases and provide remote medical guidance to rural healthcare teams.</p>
+<div class="mt-8 flex items-center gap-2 text-secondary font-bold transition-all group-hover:gap-4">
+<span class="" style="">Access Portal</span>
+<span class="material-symbols-outlined" style="">arrow_forward</span>
+</div>
+</div>
+</div>
+</button>
+</div>
+<!-- Footer Subtle Text -->
+<div class="mt-20 flex flex-col items-center space-y-4">
+<div class="flex items-center gap-6">
+<a class="text-sm font-semibold text-outline hover:text-primary transition-colors" href="#" style="">Privacy Policy</a>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<a class="text-sm font-semibold text-outline hover:text-primary transition-colors" href="#" style="">Emergency Support</a>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<a class="text-sm font-semibold text-outline hover:text-primary transition-colors" href="#" style="">Partner Access</a>
+</div>
+<p class="text-xs text-outline-variant tracking-wider font-medium" style="">© 2024 GUARDIAN CARE. ALL RIGHTS RESERVED.</p>
+</div>
+</main>
+<!-- Contextual Support FAB -->
+<div class="fixed bottom-10 right-10">
+<button class="bg-secondary text-on-secondary w-14 h-14 rounded-full flex items-center justify-center editorial-shadow transition-transform hover:scale-110 active:scale-95" style="">
+<span class="material-symbols-outlined" style="">help</span>
+</button>
+</div>
+</body></html>

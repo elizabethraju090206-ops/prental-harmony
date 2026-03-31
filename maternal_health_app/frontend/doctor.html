@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Portal - Aarogya Sathi</title>
+  <meta name="description" content="Part-time doctor dashboard for reviewing AI-triaged patient referrals." />
+  <link rel="stylesheet" href="/static/style.css?v=20260331" />
+</head>
+<body style="background:#EEF2FF;">
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <div class="doctor-header">
+    <div class="logo">👨‍⚕️</div>
+    <div>
+      <h1>Doctor Portal</h1>
+      <p style="opacity:0.8; font-size:0.9rem;">Aarogya Sathi - Part-time Doctor Dashboard</p>
+    </div>
+    <div style="margin-left:auto;">
+      <button id="btn-logout" class="btn btn-outline" onclick="logout()" style="width:auto; padding:10px 20px; font-size:0.95rem; display:none;">
+        🚪 Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- ── LOGIN SECTION ──────────────────────────────────── -->
+  <div id="section-login" class="login-box" style="display:block;">
+    <div style="text-align:center; font-size:3rem; margin-bottom:8px;">🩺</div>
+    <h2>Doctor Login</h2>
+    <p style="text-align:center; color:var(--color-text-light); margin-bottom:24px; font-size:0.9rem;">
+      Login to view and manage patient referrals from the AI triage system.
+    </p>
+    <label for="doc-email">Email Address</label>
+    <input type="email" id="doc-email" placeholder="doctor@health.com" />
+    <label for="doc-password">Password</label>
+    <input type="password" id="doc-password" placeholder="••••••••" />
+    <button class="btn btn-primary" onclick="doctorLogin()" style="margin-top:4px;">
+      🔑 Login
+    </button>
+    <p id="login-error" style="color:var(--color-emergency); text-align:center; font-size:0.9rem; margin-top:8px; display:none;">
+      ❌ Invalid email or password. Please try again.
+    </p>
+    <div style="border-top:1px solid #eee; margin-top:20px; padding-top:14px; text-align:center; font-size:0.85rem; color:var(--color-text-light);">
+      Demo credentials: <strong>doctor@health.com</strong> / <strong>doctor123</strong>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD SECTION ──────────────────────────────── -->
+  <div id="section-dashboard" class="container" style="display:none;">
+
+    <!-- Welcome Bar -->
+    <div class="card" style="background:linear-gradient(135deg,#1a237e,#3949AB); color:white; border:none;">
+      <h2 style="color:white;">👋 Welcome, <span id="doctor-name">Doctor</span>!</h2>
+      <p id="doctor-spec" style="opacity:0.85; font-size:0.95rem;">Specialization: —</p>
+      <p style="opacity:0.75; font-size:0.85rem; margin-top:4px;">Review your AI-triaged patient referrals below.</p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-chip">
+        <div class="num" id="stat-total">0</div>
+        <div class="lbl">Total Referrals</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num" id="stat-pending" style="color:var(--color-warning);">0</div>
+        <div class="lbl">Pending</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num" id="stat-resolved" style="color:var(--color-safe);">0</div>
+        <div class="lbl">Resolved</div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+      <button class="lang-btn active" onclick="filterReferrals('all', this)">All</button>
+      <button class="lang-btn" onclick="filterReferrals('pending', this)">🟡 Pending</button>
+      <button class="lang-btn" onclick="filterReferrals('reviewed', this)">🔵 Reviewed</button>
+      <button class="lang-btn" onclick="filterReferrals('resolved', this)">🟢 Resolved</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="spinner" id="referral-spinner" style="display:block;"></div>
+
+    <!-- Referral Cards -->
+    <div id="referrals-container"></div>
+
+    <!-- Empty State -->
+    <div id="empty-state" style="display:none; text-align:center; padding:40px 20px; color:var(--color-text-light);">
+      <div style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <p style="font-size:1.1rem;">No referrals in this category.</p>
+      <p style="font-size:0.9rem; margin-top:8px;">Check back later for new patient cases.</p>
+    </div>
+
+  </div>
+
+  <!-- ── REVIEW MODAL ────────────────────────────────────── -->
+  <div id="review-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:white; border-radius:var(--radius); padding:28px 24px; max-width:480px; width:100%; animation:fadeIn 0.3s;">
+      <h3 style="margin-bottom:16px; color:#1a237e;">📝 Write Your Review</h3>
+      <div id="modal-patient-info" style="background:#F5F5F5; padding:12px; border-radius:8px; margin-bottom:16px; font-size:0.9rem;"></div>
+      <label for="modal-status">Update Status</label>
+      <select id="modal-status">
+        <option value="reviewed">🔵 Mark as Reviewed</option>
+        <option value="resolved">🟢 Mark as Resolved</option>
+      </select>
+      <label for="modal-notes">Your Notes / Prescription</label>
+      <textarea id="modal-notes" placeholder="e.g. Patient should rest and take Paracetamol 500mg twice a day. Follow up in 3 days."></textarea>
+      <div style="display:flex; gap:10px; margin-top:4px;">
+        <button class="btn btn-primary" onclick="submitReview()" style="flex:1;">✅ Submit Review</button>
+        <button class="btn btn-outline" onclick="closeReviewModal()" style="flex:1;">✖ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🩺 Aarogya Sathi Doctor Portal · Secure · Private</p>
+  </footer>
+
+  <script>
+    // ─────────────────────────────────────────────────────────
+    //  Doctor Portal JavaScript
+    // ─────────────────────────────────────────────────────────
+    const API = '';  // Empty = same origin (the FastAPI server)
+    let currentDoctorId = null;
+    let allReferrals = [];
+    let currentReferralId = null;
+
+    // ── Doctor Login ────────────────────────────────────────
+    async function doctorLogin() {
+      const email = document.getElementById('doc-email').value.trim();
+      const password = document.getElementById('doc-password').value.trim();
+      document.getElementById('login-error').style.display = 'none';
+
+      const res = await fetch(`${API}/doctor/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (!res.ok) {
+        document.getElementById('login-error').style.display = 'block';
+        return;
+      }
+
+      const data = await res.json();
+      currentDoctorId = data.doctor_id;
+
+      // Update UI with doctor info
+      document.getElementById('doctor-name').textContent = data.name;
+      document.getElementById('doctor-spec').textContent = `Specialization: ${data.specialization}`;
+      document.getElementById('section-login').style.display = 'none';
+      document.getElementById('section-dashboard').style.display = 'block';
+      document.getElementById('btn-logout').style.display = 'inline-flex';
+
+      loadReferrals();
+    }
+
+    // ── Load Patient Referrals ──────────────────────────────
+    async function loadReferrals() {
+      document.getElementById('referral-spinner').style.display = 'block';
+      document.getElementById('referrals-container').innerHTML = '';
+
+      const res = await fetch(`${API}/doctor/${currentDoctorId}/referrals`);
+      const data = await res.json();
+      allReferrals = data.referrals;
+
+      document.getElementById('referral-spinner').style.display = 'none';
+      updateStats();
+      renderReferrals(allReferrals);
+    }
+
+    // ── Update Stats ────────────────────────────────────────
+    function updateStats() {
+      const total = allReferrals.length;
+      const pending = allReferrals.filter(r => r.status === 'pending').length;
+      const resolved = allReferrals.filter(r => r.status === 'resolved').length;
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-resolved').textContent = resolved;
+    }
+
+    // ── Render Referral Cards ───────────────────────────────
+    function renderReferrals(referrals) {
+      const container = document.getElementById('referrals-container');
+      const emptyState = document.getElementById('empty-state');
+      container.innerHTML = '';
+
+      if (referrals.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      const severityEmoji = { emergency: '🚨', high: '⚠️', medium: '📋', low: '✅' };
+      const statusBadge = {
+        pending:  '<span class="severity-tag tag-emergency">Pending</span>',
+        reviewed: '<span class="severity-tag" style="background:#1565C0;color:white;">Reviewed</span>',
+        resolved: '<span class="severity-tag tag-low">Resolved</span>',
+      };
+
+      referrals.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'referral-card';
+        card.innerHTML = `
+          <div class="meta">
+            ${statusBadge[r.status] || ''} &nbsp;
+            <span class="severity-tag tag-${r.severity}">${severityEmoji[r.severity] || ''} ${r.severity.toUpperCase()}</span>
+            &nbsp; 📅 ${new Date(r.created_at).toLocaleString()}
+          </div>
+          <h3 style="font-size:1.1rem; margin-bottom:6px;">👤 ${r.patient_name}, Age: ${r.patient_age ?? '—'}</h3>
+          <p class="symptoms">💬 Reported: "${r.symptoms}"</p>
+          <div class="ai-advice">🤖 AI Advice: ${r.ai_advice}</div>
+          ${r.doctor_notes ? `<div style="margin-top:10px; padding:10px; background:#E8F5E9; border-radius:8px;">📝 Your Notes: ${r.doctor_notes}</div>` : ''}
+          ${r.status !== 'resolved' ? `<button class="btn btn-primary" onclick="openReviewModal(${r.referral_id}, '${r.patient_name}', '${r.symptoms}')" style="margin-top:12px; font-size:1rem; padding:14px;">
+            📝 Write Consultation Notes
+          </button>` : '<p style="color:var(--color-safe); font-weight:600; margin-top:10px;">✅ This case is resolved.</p>'}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ── Filter Referrals ────────────────────────────────────
+    function filterReferrals(status, btn) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filtered = status === 'all' ? allReferrals : allReferrals.filter(r => r.status === status);
+      renderReferrals(filtered);
+    }
+
+    // ── Open Review Modal ───────────────────────────────────
+    function openReviewModal(referralId, patientName, symptoms) {
+      currentReferralId = referralId;
+      document.getElementById('modal-patient-info').innerHTML = `
+        <strong>Patient:</strong> ${patientName}<br/>
+        <strong>Symptoms:</strong> ${symptoms}
+      `;
+      document.getElementById('modal-notes').value = '';
+      document.getElementById('review-modal').style.display = 'flex';
+    }
+    function closeReviewModal() {
+      document.getElementById('review-modal').style.display = 'none';
+    }
+
+    // ── Submit Doctor Review ────────────────────────────────
+    async function submitReview() {
+      const status = document.getElementById('modal-status').value;
+      const notes = document.getElementById('modal-notes').value.trim();
+      if (!notes) { alert('Please write some notes before submitting.'); return; }
+
+      const res = await fetch(`${API}/doctor/referral/${currentReferralId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, doctor_notes: notes })
+      });
+
+      if (res.ok) {
+        closeReviewModal();
+        loadReferrals();  // Refresh referral list
+      } else {
+        alert('Error submitting review. Please try again.');
+      }
+    }
+
+    // ── Logout ──────────────────────────────────────────────
+    function logout() {
+      currentDoctorId = null;
+      allReferrals = [];
+      document.getElementById('section-dashboard').style.display = 'none';
+      document.getElementById('section-login').style.display = 'block';
+      document.getElementById('btn-logout').style.display = 'none';
+      document.getElementById('doc-email').value = '';
+      document.getElementById('doc-password').value = '';
+    }
+  </script>
+
+</body>
+</html>

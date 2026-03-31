@@ -1,0 +1,12 @@
+{
+  "name": "Aarogya Sathi",
+  "short_name": "AarogyaSathi",
+  "description": "AI-powered maternal health assistant for rural communities",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF5F7",
+  "theme_color": "#E91E8C",
+  "icons": [
+    { "src": "icon.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guardian Care | Patient Interface</title>
+<!-- Google Fonts: Playfair Display for Serif, Plus Jakarta Sans for Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f9f9f9",
+              "tertiary-container": "#a45d4f",
+              "secondary-fixed-dim": "#90cdfd",
+              "surface-container-highest": "#e2e2e2",
+              "secondary": "#1c648e",
+              "on-surface-variant": "#3f4945",
+              "inverse-primary": "#88d5c0",
+              "on-secondary-fixed-variant": "#004b70",
+              "on-primary-container": "#d4fff1",
+              "surface": "#f9f9f9",
+              "tertiary-fixed-dim": "#ffb4a5",
+              "surface-tint": "#146a59",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f0f1f1",
+              "secondary-container": "#90cdfd",
+              "secondary-fixed": "#cae6ff",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "tertiary": "#874539",
+              "surface-container-high": "#e8e8e8",
+              "on-primary": "#ffffff",
+              "on-background": "#1a1c1c",
+              "primary": "#076453",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2f3131",
+              "surface-dim": "#dadada",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#fff3f1",
+              "surface-variant": "#e2e2e2",
+              "on-tertiary-fixed-variant": "#723529",
+              "on-secondary-fixed": "#001e30",
+              "surface-container": "#eeeeee",
+              "on-surface": "#1a1c1c",
+              "on-primary-fixed-variant": "#005142",
+              "surface-container-low": "#f3f3f3",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdad3",
+              "on-primary-fixed": "#002019",
+              "on-secondary-container": "#025881",
+              "background": "#f9f9f9",
+              "error": "#ba1a1a",
+              "primary-fixed-dim": "#88d5c0",
+              "outline": "#6f7975",
+              "outline-variant": "#bec9c4",
+              "on-tertiary-fixed": "#3a0b04",
+              "primary-fixed": "#a4f2db",
+              "primary-container": "#2e7d6b"
+            },
+            fontFamily: {
+              "headline": ["Playfair Display", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+            font-size: 3rem;
+        }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        
+        .voice-orb-glow {
+            background: radial-gradient(circle, rgba(7, 100, 83, 0.2) 0%, rgba(28, 100, 142, 0.1) 100%);
+            box-shadow: 0 0 40px rgba(7, 100, 83, 0.15);
+        }
+
+        /* Editorial spacing and asymmetry */
+        .content-asymmetry {
+            padding-left: 2.75rem;
+            padding-right: 1.5rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface overflow-hidden">
+<!-- Screen Container -->
+<main class="relative h-screen flex flex-col max-w-2xl mx-auto overflow-hidden">
+<!-- Header & Alert Meter -->
+<header class="pt-10 pb-6 content-asymmetry">
+<h1 class="font-headline text-4xl text-primary font-bold mb-6">Hello, Amrita</h1>
+<!-- Alert Meter Section -->
+<div class="flex flex-col gap-3">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Current Health Status</span>
+<div class="flex items-center gap-4 bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
+<div class="flex-1 h-4 bg-surface-container rounded-full overflow-hidden flex">
+<!-- Red Segment -->
+<div class="h-full w-1/4 bg-error opacity-20"></div>
+<!-- Yellow Segment -->
+<div class="h-full w-1/4 bg-tertiary opacity-20"></div>
+<!-- Green Segment (Active) -->
+<div class="h-full w-2/4 bg-primary relative">
+<div class="absolute right-0 top-0 h-full w-8 bg-white/20 blur-sm"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary !text-2xl icon-fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-bold text-primary">Healthy</span>
+</div>
+</div>
+</div>
+</header>
+<!-- 2x2 Interaction Grid -->
+<section class="flex-1 grid grid-cols-2 grid-rows-2 gap-4 content-asymmetry py-4">
+<!-- Emergency Alert (Red) -->
+<button class="relative group flex flex-col items-center justify-center p-8 bg-error text-white rounded-3xl shadow-xl active:scale-95 transition-all duration-300">
+<div class="bg-white/20 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-5xl icon-fill" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+</div>
+<span class="font-headline text-xl text-center">Emergency Alert</span>
+</button>
+<!-- Symptom Check (Teal) -->
+<button class="relative group flex flex-col items-center justify-center p-8 bg-primary-container text-on-primary-container rounded-3xl shadow-lg active:scale-95 transition-all duration-300">
+<div class="bg-primary/10 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-5xl">stethoscope</span>
+</div>
+<span class="font-headline text-xl text-center">Symptom Check</span>
+</button>
+<!-- Audio Health Tips (Blue) -->
+<button class="relative group flex flex-col items-center justify-center p-8 bg-secondary-container text-on-secondary-container rounded-3xl shadow-lg active:scale-95 transition-all duration-300">
+<div class="bg-secondary/10 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-5xl">headphones</span>
+</div>
+<span class="font-headline text-xl text-center">Audio Health</span>
+</button>
+<!-- Appointment Reminder (Green) -->
+<button class="relative group flex flex-col items-center justify-center p-8 bg-surface-container-lowest border-2 border-primary/10 text-primary rounded-3xl shadow-sm active:scale-95 transition-all duration-300">
+<div class="bg-primary/5 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined !text-5xl">calendar_month</span>
+</div>
+<span class="font-headline text-xl text-center">Appointment</span>
+</button>
+</section>
+<!-- Voice Assistant Orb Footer -->
+<footer class="pb-12 pt-6 flex flex-col items-center gap-4">
+<div class="text-center mb-2">
+<p class="text-on-surface-variant font-medium">Tap to speak with Guardian AI</p>
+</div>
+<button class="relative w-28 h-28 rounded-full voice-orb-glow flex items-center justify-center group active:scale-90 transition-transform duration-500">
+<!-- Outer Pulse Rings -->
+<div class="absolute inset-0 rounded-full border-4 border-primary/20 scale-110"></div>
+<div class="absolute inset-0 rounded-full border border-secondary/10 scale-125"></div>
+<!-- Inner Orb -->
+<div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl overflow-hidden">
+<!-- Dynamic Waveform Placeholder -->
+<div class="flex items-center gap-1">
+<div class="w-1 h-6 bg-white/40 rounded-full"></div>
+<div class="w-1 h-10 bg-white rounded-full"></div>
+<div class="w-1 h-12 bg-white/60 rounded-full"></div>
+<div class="w-1 h-8 bg-white/80 rounded-full"></div>
+<div class="w-1 h-4 bg-white/30 rounded-full"></div>
+</div>
+</div>
+</button>
+</footer>
+<!-- Bottom Ambient Shadow/Layering -->
+<div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
+</main>
+<!-- Contextual Backdrop Image (Blurred) -->
+<div class="fixed inset-0 -z-10 opacity-10 pointer-events-none">
+<img alt="Rural landscape" class="w-full h-full object-cover blur-2xl" data-alt="Soft ethereal blurred background of a lush green rural field at sunrise with warm golden light and peaceful atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzcaa7_u_2QKPfW3ti_g4TyxU3y_HSw_OjXw5WnKCJrMsLbKjs_xYagqkVfZJKRYzMSjNo86cbya2J9_yyY8ZEuPuCuecQVxB8ADhN-gWtG1YrdwDiqkyYDIuFooIxWtkvRMDX9wpk1zK1ZN69Y-hpoXfbUjPfs6NzZs5X1-Z8O7ldl2WDmp1dP9oj5KNC6gNhBTzga6n5RNVrq9BwbE10Spj6BDEkTixkO77Wz3IiXma4nocx0LNR-rWfcWrtDX1iqJNUeaQkBs"/>
+</div>
+</body></html>

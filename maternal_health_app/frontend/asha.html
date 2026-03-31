@@ -1,0 +1,350 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Guardian Care - ASHA Worker Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f9f9f9",
+              "tertiary-container": "#a45d4f",
+              "secondary-fixed-dim": "#90cdfd",
+              "surface-container-highest": "#e2e2e2",
+              "secondary": "#1c648e",
+              "on-surface-variant": "#3f4945",
+              "inverse-primary": "#88d5c0",
+              "on-secondary-fixed-variant": "#004b70",
+              "on-primary-container": "#d4fff1",
+              "surface": "#f9f9f9",
+              "tertiary-fixed-dim": "#ffb4a5",
+              "surface-tint": "#146a59",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f0f1f1",
+              "secondary-container": "#90cdfd",
+              "secondary-fixed": "#cae6ff",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "tertiary": "#874539",
+              "surface-container-high": "#e8e8e8",
+              "on-primary": "#ffffff",
+              "on-background": "#1a1c1c",
+              "primary": "#076453",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2f3131",
+              "surface-dim": "#dadada",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#fff3f1",
+              "surface-variant": "#e2e2e2",
+              "on-tertiary-fixed-variant": "#723529",
+              "on-secondary-fixed": "#001e30",
+              "surface-container": "#eeeeee",
+              "on-surface": "#1a1c1c",
+              "on-primary-fixed-variant": "#005142",
+              "surface-container-low": "#f3f3f3",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdad3",
+              "on-primary-fixed": "#002019",
+              "on-secondary-container": "#025881",
+              "background": "#f9f9f9",
+              "error": "#ba1a1a",
+              "primary-fixed-dim": "#88d5c0",
+              "outline": "#6f7975",
+              "outline-variant": "#bec9c4",
+              "on-tertiary-fixed": "#3a0b04",
+              "primary-fixed": "#a4f2db",
+              "primary-container": "#2e7d6b"
+            },
+            fontFamily: {
+              "headline": ["Playfair Display", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-primary-fixed-dim">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#f9f9f9] dark:bg-slate-950 transition-all duration-300">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1600px] mx-auto">
+<div class="flex items-center gap-6">
+<span class="text-2xl font-serif font-bold text-[#076453] dark:text-[#2E7D6B]" style="">Guardian Care</span>
+<div class="hidden md:flex gap-8">
+<a class="text-[#076453] dark:text-[#2E7D6B] font-bold border-b-2 border-[#076453] pb-1 hover:text-[#2E7D6B] transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)" href="#" style="">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#2E7D6B] transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)" href="#" style="">Patients</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#2E7D6B] transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)" href="#" style="">Alerts</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#2E7D6B] transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)" href="#" style="">Schedule</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full text-on-surface-variant text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="">cloud_done</span>
+<span class="" style="">Synced</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" style="">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" style="">settings</button>
+<img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed shadow-sm" data-alt="portrait of a confident South Asian female healthcare provider in professional attire with a warm, empathetic expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnhGHO86neiomTji0KGqpwxh8_dgrumg8yRS_uGDRDZQ-NcKki19J9rxvn5rSVf97ISidJDZRf9CWROqVPIbEvbRehLq021sdyGiJcDm8K2L61N76kKGgPh6HeZVOzGNPqK7JrvYxd4iNg0g7IwM1YKBTFTeafj3dRXIyq-z73ifq8j1x18Lp_j945Lp9ZMvt0r9AE4QYT6TiNJ6QLNPZMPOlwkmfrHBnjH3ri3QajzYZQoPGedYkvgNaNtOSSurxqtLJKE-hxung" style="">
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-8 max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Navigation & Stats -->
+<aside class="md:col-span-3 space-y-6 sticky top-24">
+<!-- Sidebar Navigation -->
+<nav class="bg-[#f3f3f3]/80 backdrop-blur-xl p-6 rounded-3xl shadow-[0_20px_40px_-12px_rgba(30,41,59,0.06)] flex flex-col gap-2">
+<div class="mb-6 px-2">
+<h2 class="font-serif text-xl text-[#076453]" style="">Dr. Amrita Singh</h2>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mt-1" style="">Rural Health Lead</p>
+</div>
+<a class="flex items-center gap-4 px-4 py-3 bg-white text-[#076453] rounded-xl shadow-sm font-semibold transition-all duration-300" href="#" style="">
+<span class="material-symbols-outlined" style="">dashboard</span>
+<span class="" style="">Overview</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/50 hover:text-[#076453] rounded-xl transition-all duration-300" href="#" style="">
+<span class="material-symbols-outlined" style="">person_book</span>
+<span class="" style="">Patient Records</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/50 hover:text-[#076453] rounded-xl transition-all duration-300" href="#" style="">
+<span class="material-symbols-outlined" style="">psychology</span>
+<span class="" style="">AI Insights</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/50 hover:text-[#076453] rounded-xl transition-all duration-300" href="#" style="">
+<span class="material-symbols-outlined" style="">emergency</span>
+<span class="" style="">Health Alerts</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/50 hover:text-[#076453] rounded-xl transition-all duration-300" href="#" style="">
+<span class="material-symbols-outlined" style="">calendar_month</span>
+<span class="" style="">Clinic Schedule</span>
+</a>
+<div class="mt-8 pt-6 border-t border-outline-variant/15">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-xl font-bold shadow-lg hover:scale-[1.02] active:scale-95 transition-all" style="">
+                        Quick Consult
+                    </button>
+</div>
+</nav>
+<!-- Personal Stats Card -->
+<div class="bg-surface-container-low p-8 rounded-3xl space-y-6">
+<h3 class="font-serif text-lg text-on-surface" style="">Weekly Impact</h3>
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between">
+<div>
+<p class="text-xs text-on-surface-variant font-bold uppercase tracking-tighter" style="">Visits</p>
+<p class="text-2xl font-serif text-primary" style="">24</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" style="">home_health</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between">
+<div>
+<p class="text-xs text-on-surface-variant font-bold uppercase tracking-tighter" style="">High Risk</p>
+<p class="text-2xl font-serif text-error" style="">03</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-xl" style="">priority_high</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Column: Patient Profiles -->
+<section class="md:col-span-5 space-y-8">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-serif text-primary leading-tight" style="">Patient Care<br>Registry</h1>
+<p class="text-on-surface-variant mt-2" style="">12 scheduled check-ups for today</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" style="">
+<span class="material-symbols-outlined" style="">search</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" style="">
+<span class="material-symbols-outlined" style="">tune</span>
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Patient Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex items-center gap-6 group hover:shadow-md transition-all duration-300">
+<img alt="Patient profile" class="w-20 h-20 rounded-2xl object-cover" data-alt="close-up portrait of a pregnant village woman with a serene expression and traditional clothing in soft natural light" src="https://imgs.search.brave.com/I_JRTjjGF7kxgWbdWgNPIs3Zw8rt-D734FL_YVVXcRg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/aWNvbnM4LmNvbS9z/dGlja2Vycy8xMjAw/L3VzZXItZmVtYWxl/LWNpcmNsZS5qcGc" style="">
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-xl font-serif text-on-surface" style="">Lakshmi Devi</h4>
+<p class="text-sm text-on-surface-variant" style="">28 Weeks • Village Sector 4</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;" title="Healthy Bloom">eco</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest" style="">Stable</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-container text-xs font-bold rounded-full" style="">Routine Checkup</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full" style="">Iron Suppl.</span>
+</div>
+</div>
+</div>
+<!-- Patient Card 2 (High Risk) -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex items-center gap-6 border-l-4 border-error group hover:shadow-md transition-all duration-300">
+<img alt="Patient profile" class="w-20 h-20 rounded-2xl object-cover" data-alt="warm portrait of an older Indian woman with grey hair and gentle wrinkles wearing a colorful sari, soft indoor lighting" src="https://imgs.search.brave.com/I_JRTjjGF7kxgWbdWgNPIs3Zw8rt-D734FL_YVVXcRg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/aWNvbnM4LmNvbS9z/dGlja2Vycy8xMjAw/L3VzZXItZmVtYWxl/LWNpcmNsZS5qcGc" style="">
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-xl font-serif text-on-surface" style="">Meera Bai</h4>
+<p class="text-sm text-on-surface-variant" style="">32 Weeks • West Riverside</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-error text-3xl" title="Action Needed" style="">potted_plant</span>
+<span class="text-[10px] font-bold text-error uppercase tracking-widest" style="">High Risk</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs font-bold rounded-full" style="">BP Monitoring</span>
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs font-bold rounded-full" style="">Urgent</span>
+</div>
+</div>
+</div>
+<!-- Patient Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex items-center gap-6 group hover:shadow-md transition-all duration-300">
+<img alt="Patient profile" class="w-20 h-20 rounded-2xl object-cover" data-alt="candid portrait of a young South Asian mother holding her infant with soft focus greenery in the background" src="https://imgs.search.brave.com/I_JRTjjGF7kxgWbdWgNPIs3Zw8rt-D734FL_YVVXcRg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/aWNvbnM4LmNvbS9z/dGlja2Vycy8xMjAw/L3VzZXItZmVtYWxl/LWNpcmNsZS5qcGc" style="">
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-xl font-serif text-on-surface" style="">Priya Sharma</h4>
+<p class="text-sm text-on-surface-variant" style="">14 Weeks • Sector 12 Hub</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="">psychology_alt</span>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-widest" style="">Counseling</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold rounded-full" style="">Nutrition Plan</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full" style="">First Trimester</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: AI Assistant & Insights -->
+<aside class="md:col-span-4 space-y-6">
+<div class="bg-secondary-container/20 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/40 shadow-xl">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-serif text-2xl text-secondary" style="">Care Companion</h3>
+<p class="text-xs font-bold text-secondary/70 uppercase tracking-widest" style="">Personal AI Study Assistant</p>
+</div>
+</div>
+<div class="space-y-8">
+<!-- Patient Worries Summary -->
+<section>
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2" style="">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            Today's Common Worries
+                        </h4>
+<div class="space-y-3">
+<div class="bg-white/60 p-4 rounded-2xl border border-white/50">
+<p class="text-sm text-on-surface font-medium italic" style="">"Will the iron tablets make my baby too large for delivery?"</p>
+<p class="text-[10px] text-on-surface-variant mt-2 font-bold" style="">— Reported by 4 patients</p>
+</div>
+<div class="bg-white/60 p-4 rounded-2xl border border-white/50">
+<p class="text-sm text-on-surface font-medium italic" style="">"Is it safe to continue working in the fields until month 8?"</p>
+<p class="text-[10px] text-on-surface-variant mt-2 font-bold" style="">— Reported by Lakshmi D. &amp; 2 others</p>
+</div>
+</div>
+</section>
+<!-- Mythbuster Talking Points -->
+<section>
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2" style="">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                            Mythbuster: Culturally Sensitive
+                        </h4>
+<div class="bg-tertiary-fixed/30 p-6 rounded-3xl border border-tertiary/10 space-y-4">
+<div>
+<h5 class="text-sm font-bold text-tertiary flex items-center gap-2 mb-2" style="">
+<span class="material-symbols-outlined text-lg" style="">forum</span>
+                                    The "Cold Foods" Myth
+                                </h5>
+<p class="text-sm text-on-tertiary-fixed-variant leading-relaxed" style="">
+                                    Explain that papaya and citrus are high in Vit-C, which actually helps iron absorption from the roti. Use the "Sun and Shield" analogy.
+                                </p>
+</div>
+<div class="pt-4 border-t border-tertiary/10">
+<h5 class="text-sm font-bold text-tertiary flex items-center gap-2 mb-2" style="">
+<span class="material-symbols-outlined text-lg" style="">lightbulb</span>
+                                    Engagement Tip
+                                </h5>
+<p class="text-sm text-on-tertiary-fixed-variant leading-relaxed" style="">
+                                    Mention "Garbh Sanskar" while discussing diet to align medical advice with traditional wellness practices.
+                                </p>
+</div>
+</div>
+</section>
+</div>
+<button class="w-full mt-8 py-3 bg-white text-secondary text-sm font-bold rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2" style="">
+<span class="material-symbols-outlined text-lg" style="">menu_book</span>
+                    Open Learning Module
+                </button>
+</div>
+<!-- Offline Sync Status -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="">cloud_sync</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface" style="">Offline Mode Ready</p>
+<p class="text-xs text-on-surface-variant" style="">Last synced 4 mins ago</p>
+</div>
+</div>
+<span class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+</div>
+</aside>
+</main>
+<!-- Bottom Nav for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md flex justify-around items-center px-4 pb-6 pt-3 shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.05)] rounded-t-[2.75rem]">
+<a class="flex flex-col items-center justify-center bg-[#cae6ff] text-[#076453] rounded-[1.5rem] px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1" style="">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" style="">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1" style="">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" style="">medical_services</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1" style="">Emergency</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" style="">account_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1" style="">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button (Only on Home/Dashboard as per mandate) -->
+<button class="fixed bottom-10 right-10 z-40 bg-gradient-to-br from-primary to-primary-container text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all md:flex hidden" style="">
+<span class="material-symbols-outlined text-3xl" style="">add</span>
+</button>
+</body></html>

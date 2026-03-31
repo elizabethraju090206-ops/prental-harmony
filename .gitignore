@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual Environments
+venv/
+new_venv/
+env/
+.env
+.venv/
+
+# Database (runtime artifact — auto-created on startup)
+*.db
+*.sqlite
+*.sqlite3
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
