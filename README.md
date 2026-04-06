@@ -43,6 +43,10 @@ uvicorn main:app --reload
 ```
 http://localhost:8000
 ```
+or
+```
+http://localhost:8080
+```
 
 The database (`health.db`) is auto-created on first startup.
 
